@@ -6,7 +6,7 @@
 
 > [!NOTE]  
 > This branch contains the code for the BuidlGuidl CTF website.
-> If you are looking for the stack to play the CTF, please check the [ctf-extension](https://github.com/buidlGuidl/ctf.buidlguidl.com/tree/ctf-extension) branch.
+> If you are looking for the stack to play the CTF, please check the [extension](https://github.com/buidlGuidl/ctf.buidlguidl.com/tree/extension) branch.
 
 ---
 
