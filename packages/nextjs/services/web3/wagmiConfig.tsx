@@ -12,6 +12,17 @@ export const enabledChains = targetNetworks.find((network: Chain) => network.id 
   ? targetNetworks
   : ([...targetNetworks, mainnet] as const);
 
+// Custom RPC URL for Arbitrum Sepolia
+const getChainRpcUrl = (chainId: number) => {
+  // Arbitrum Sepolia specific RPC URL
+  if (chainId === 421614) {
+    return "https://sepolia-rollup.arbitrum.io/rpc";
+  }
+
+  // Default to Alchemy for other networks
+  return getAlchemyHttpUrl(chainId);
+};
+
 export const wagmiConfig = createConfig({
   chains: enabledChains,
   connectors: wagmiConnectors,
@@ -19,7 +30,7 @@ export const wagmiConfig = createConfig({
   client({ chain }) {
     return createClient({
       chain,
-      transport: http(getAlchemyHttpUrl(chain.id)),
+      transport: http(getChainRpcUrl(chain.id)),
       ...(chain.id !== (hardhat as Chain).id
         ? {
             pollingInterval: scaffoldConfig.pollingInterval,
